@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  openproject-mcp:
+    build: ./openproject-mcp
+    env_file:
+      - ./openproject-mcp/.env
+    ports:
+      - "8080:8080"

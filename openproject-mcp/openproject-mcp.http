@@ -1,0 +1,6 @@
+@openproject_mcp_HostAddress = http://localhost:5279
+
+GET {{openproject_mcp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
