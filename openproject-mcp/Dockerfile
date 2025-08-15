@@ -2,7 +2,7 @@
 
 # Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
+#USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 
@@ -11,11 +11,11 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["openproject-mcp/openproject-mcp.csproj", "openproject-mcp/"]
-RUN dotnet restore "./openproject-mcp/openproject-mcp.csproj"
+COPY ["openproject-mcp.csproj", "openproject-mcp/"]
+RUN dotnet restore "openproject-mcp/openproject-mcp.csproj"
 COPY . .
 WORKDIR "/src/openproject-mcp"
-RUN dotnet build "./openproject-mcp.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "openproject-mcp.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
