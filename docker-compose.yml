@@ -2,7 +2,8 @@ version: '3.8'
 services:
   openproject-mcp:
     build: ./openproject-mcp
-    env_file:
-      - ./openproject-mcp/.env
+    environment:
+      - ApiSettings__ApiUrl=http://192.168.11.72:9548
+      - ApiSettings__ApiKey=17c2f0488d7bea943e203290364adf36efd026594af9aad42ba6a351d38b59f6
     ports:
       - "8080:8080"
