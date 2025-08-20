@@ -1,4 +1,5 @@
 using openproject_mcp;
+using openproject_mcp.Infrastructure;
 using openproject_mcp.services;
 using System.Net.Http.Headers;
 
@@ -25,8 +26,13 @@ builder.Services.AddSingleton(_ =>
     return client;
 });
 
-// Soluci�n: use una funci�n para crear la instancia de OpenProjectApiClient con la URL
-builder.Services.AddScoped<OpenProjectApiClient>();
+// Register the WorkPackageRepository with HttpClient
+builder.Services.AddScoped<IWorkPackageRepository, WorkPackageRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+
+// Register the WorkPackageService
+builder.Services.AddScoped<IWorkPackageService, WorkPackageService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 var app = builder.Build();
 
